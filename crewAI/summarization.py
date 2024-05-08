@@ -5,7 +5,6 @@ from crewai import Agent, Task, Process, Crew
 from crewai.project import agent, CrewBase, task, crew
 from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
-import json
 
 
 load_dotenv()
@@ -15,8 +14,8 @@ groq_ai_key = os.getenv("GROQ_API_KEY")
 
 @CrewBase
 class ArticleSummarizationCrew():
-    agents_config = "config/agents.yaml"
-    tasks_config = "config/tasks.yaml"
+    agents_config = "config/summarization/agents.yaml"
+    tasks_config = "config/summarization/tasks.yaml"
 
     def __init__(self):
         self.groq_llm = ChatGroq(

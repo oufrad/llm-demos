@@ -1,4 +1,5 @@
 import json
+from crewAI.finance import FinancialCrew
 from crewAI.summarization import ArticleSummarizationCrew
 articles = [
     '''
@@ -39,11 +40,11 @@ def summarize_articles(articles):
     for article in articles:
         result = summarization_crew.kickoff(inputs = {"article": article})
         results.append(json.loads(result.replace("\\"," ")))
-        
+
     with open('results.json', 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=4)
 
 
-
 if __name__ == "__main__":
-    summarize_articles(articles)
+    # summarize_articles(articles)
+    pass

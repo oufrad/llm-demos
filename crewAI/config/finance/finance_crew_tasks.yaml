@@ -1,0 +1,13 @@
+tasks:
+  finance_survey: 
+    description: ask the user multiple questions about his personal finances. his income, salary, age, ... . maximum 5 questions. 
+    expected_output: the user responses to their personal finances questions.
+    max_iteration: 6
+
+  financial_guidance:
+    description: analyse the user financial situation and provide some advices to improve it. 
+    expected_output: a personalized advices and recommendation and analyse for the financial situation of the user.
+
+  financial_report: 
+    description: generating a personalized financial report for the user summarizing their financial situation and providing recommendations for improvement.
+    expected_output: detailed financial report for the user, including a summary of their financial situation, insights into their spending habits, a budget plan, investment recommendations, and actionable steps for improving their financial health.
