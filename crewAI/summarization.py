@@ -10,45 +10,39 @@ import json
 
 load_dotenv()
 
-openai_key = os.getenv("OPENAI_API_KEY")
-groq_key = os.getenv("GROQ_API_KEY")
+open_ai_key = os.getenv("OPENAI_API_KEY")
+groq_ai_key = os.getenv("GROQ_API_KEY")
 
 @CrewBase
 class ArticleSummarizationCrew():
-    agents_config = "./agents.yml"
+    agents_config = "config/agents.yaml"
+    tasks_config = "config/tasks.yaml"
 
     def __init__(self):
         self.groq_llm = ChatGroq(
-            model_name="mixtral-8x7b-32768", temperature=0, api_key=groq_key
+            model_name="mixtral-8x7b-32768", temperature=0, api_key=groq_ai_key
         )
-        self.openai_llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0, api_key=openai_key)
+        self.openai_llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0, api_key=open_ai_key)
 
     @agent
-    def article_summarizer_agent(self):
+    def article_summarizer_agent(self) -> Agent:
         return Agent(
             llm = self.groq_llm,
-            config= self.agents_config["agent"]["summarization_agent"]
+            config= self.agents_config["agents"]["summarization_agent"]
         )
 
     @task
-    def article_summarizations_task(self):
+    def article_summarizations_task(self) -> Task:
         return Task(
-            config = self.agents_config["tasks"]["summarize_article_task"],
+            config = self.tasks_config["tasks"]["summarize_article_task"],
             agent = self.article_summarizer_agent()
         )
 
-    @Crew
-    def article_summirization_crew(self):
+    @crew
+    def article_summirization_crew(self) -> Crew:
         return Crew(
             agents = self.agents,
             process = Process.sequential,
             verbose = 2,
             tasks = self.tasks
         )
-
-
-load_dotenv()
-
-
-open_ai_key = os.getenv("OPENAI_API_KEY")
-groq_ai_key = os.getenv("GROQ_API_KEY")

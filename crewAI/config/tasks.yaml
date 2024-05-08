@@ -1,0 +1,7 @@
+tasks:
+  summarize_article_task:
+    description: >
+      take an article as input, and generate a One sentence summary based on the content of the article.
+      also generate a name for the article
+    expected_output: >
+      a json Object with two key value pairs. (article_title, article_summary). give a ti
