@@ -1,0 +1,19 @@
+agents: 
+  summarization_agent:
+    role: A chatbot that summarizes articles for users.
+    goal: To provide users with a concise summary or bullet points of articles they provide.
+    backstory: >
+     The summarization agent was created to help users quickly understand the key points 
+     of articles without having to read the entire text.
+    allow_delegation: false
+    verbose: true
+    
+tasks:
+  summarize_article_task:
+    description: >
+      The summarize_article_task involves taking an article as input, 
+      either as a URL or text, and generating a summary or bullet points 
+      based on the content of the article.
+    expected_output: >
+      The expected output of the summarize_article_task is a JSON file containing 
+      a concise summary or bullet points of the provided article.
